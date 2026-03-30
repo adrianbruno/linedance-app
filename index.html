@@ -6,463 +6,172 @@
 <title>LineDance App</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
 <style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Lato',sans-serif;background:#1a0f07;color:#f0e6d3;overflow-x:hidden}
 
-  body {
-    font-family: 'Lato', sans-serif;
-    background-color: #1a0f07;
-    color: #f0e6d3;
-    overflow-x: hidden;
-  }
+nav{position:sticky;top:0;z-index:100;background:#1a0f07;border-bottom:1px solid #8B6914;display:flex;justify-content:space-between;align-items:center;padding:0.75rem 2rem}
+nav .logo{font-family:'Playfair Display',serif;color:#D4A843;font-size:1.2rem}
+nav .nav-links{display:flex;gap:1.5rem}
+nav .nav-links a{color:#c4a882;text-decoration:none;font-size:0.9rem;transition:color 0.2s}
+nav .nav-links a:hover{color:#D4A843}
 
-  /* HERO */
-  .hero {
-    min-height: 100vh;
-    background: linear-gradient(160deg, #1a0f07 0%, #2c1a0e 50%, #1a0f07 100%);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding: 2rem;
-    position: relative;
-    border-bottom: 2px solid #8B6914;
-  }
+.section{padding:5rem 2rem;max-width:1100px;margin:0 auto}
+.section-title{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4vw,2.8rem);color:#D4A843;text-align:center;margin-bottom:0.75rem}
+.section-sub{text-align:center;color:#c4a882;font-size:1rem;margin-bottom:3rem}
+.divider{width:80px;height:2px;background:#8B6914;margin:0 auto 2rem}
 
-  .hero::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background-image: repeating-linear-gradient(
-      45deg,
-      transparent,
-      transparent 40px,
-      rgba(139, 105, 20, 0.03) 40px,
-      rgba(139, 105, 20, 0.03) 80px
-    );
-  }
+#hero{min-height:100vh;background:linear-gradient(160deg,#1a0f07 0%,#2c1a0e 50%,#1a0f07 100%);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:2rem;border-bottom:2px solid #8B6914}
+.badge{display:inline-block;background:#8B6914;color:#f0e6d3;font-size:11px;letter-spacing:3px;text-transform:uppercase;padding:6px 18px;border-radius:20px;margin-bottom:1.5rem}
+#hero h1{font-family:'Playfair Display',serif;font-size:clamp(3rem,8vw,6rem);color:#D4A843;line-height:1.1;margin-bottom:1rem}
+#hero p{font-size:clamp(1rem,2vw,1.25rem);color:#c4a882;max-width:600px;line-height:1.8;margin-bottom:2.5rem}
+.hero-btns{display:flex;gap:1rem;flex-wrap:wrap;justify-content:center}
 
-  .badge {
-    display: inline-block;
-    background: #8B6914;
-    color: #f0e6d3;
-    font-size: 11px;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    padding: 6px 18px;
-    border-radius: 20px;
-    margin-bottom: 1.5rem;
-  }
+.btn-primary{background:#D4A843;color:#1a0f07;padding:14px 32px;border:none;border-radius:4px;font-size:15px;font-weight:700;letter-spacing:1px;cursor:pointer;text-decoration:none;transition:background 0.2s;display:inline-block}
+.btn-primary:hover{background:#e8bc55}
+.btn-outline{background:transparent;color:#D4A843;padding:14px 32px;border:1.5px solid #D4A843;border-radius:4px;font-size:15px;font-weight:700;letter-spacing:1px;cursor:pointer;text-decoration:none;transition:all 0.2s;display:inline-block}
+.btn-outline:hover{background:rgba(212,168,67,0.1)}
 
-  .hero h1 {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(3rem, 8vw, 6rem);
-    color: #D4A843;
-    line-height: 1.1;
-    margin-bottom: 1rem;
-    text-shadow: 0 2px 20px rgba(212, 168, 67, 0.3);
-  }
+.features-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1.5rem}
+.feature-card{background:rgba(255,255,255,0.04);border:1px solid rgba(139,105,20,0.3);border-radius:8px;padding:1.75rem 1.5rem;transition:border-color 0.2s,background 0.2s}
+.feature-card:hover{border-color:#D4A843;background:rgba(212,168,67,0.06)}
+.feature-icon{font-size:2rem;margin-bottom:1rem}
+.feature-card h3{font-family:'Playfair Display',serif;font-size:1.1rem;color:#D4A843;margin-bottom:0.5rem}
+.feature-card p{font-size:0.9rem;color:#a08060;line-height:1.7}
 
-  .hero p {
-    font-size: clamp(1rem, 2vw, 1.25rem);
-    color: #c4a882;
-    max-width: 600px;
-    line-height: 1.8;
-    margin-bottom: 2.5rem;
-  }
+.video-section{background:rgba(255,255,255,0.02);border-top:1px solid rgba(139,105,20,0.2);border-bottom:1px solid rgba(139,105,20,0.2);padding:5rem 2rem}
+.video-wrapper{max-width:800px;margin:0 auto;aspect-ratio:16/9;background:rgba(0,0,0,0.4);border:1px solid rgba(139,105,20,0.4);border-radius:8px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.video-placeholder{text-align:center;color:#8B6914}
+.play-btn{width:70px;height:70px;border:2px solid #D4A843;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 1rem;cursor:pointer;transition:background 0.2s}
+.play-btn:hover{background:rgba(212,168,67,0.15)}
+.play-triangle{width:0;height:0;border-top:12px solid transparent;border-bottom:12px solid transparent;border-left:20px solid #D4A843;margin-left:4px}
 
-  .hero-btns {
-    display: flex;
-    gap: 1rem;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
+.screenshots-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem}
+.screenshot-card{border:1px solid rgba(139,105,20,0.3);border-radius:8px;overflow:hidden;transition:border-color 0.2s}
+.screenshot-card:hover{border-color:#D4A843}
+.screenshot-card img{width:100%;aspect-ratio:16/9;object-fit:cover;display:block}
+.screenshot-label{padding:0.75rem 1rem;font-size:0.85rem;color:#a08060;border-top:1px solid rgba(139,105,20,0.2)}
 
-  .btn-primary {
-    background: #D4A843;
-    color: #1a0f07;
-    padding: 14px 32px;
-    border: none;
-    border-radius: 4px;
-    font-size: 15px;
-    font-weight: 700;
-    letter-spacing: 1px;
-    cursor: pointer;
-    text-decoration: none;
-    transition: background 0.2s;
-  }
-  .btn-primary:hover { background: #e8bc55; }
+.keys-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem}
+.key-row{display:flex;align-items:center;gap:1rem;padding:0.75rem 1rem;background:rgba(255,255,255,0.03);border:1px solid rgba(139,105,20,0.2);border-radius:6px}
+.key{background:#2c1a0e;border:1px solid #8B6914;border-radius:4px;padding:4px 10px;font-size:12px;font-weight:700;color:#D4A843;min-width:40px;text-align:center;white-space:nowrap}
+.key-desc{font-size:0.85rem;color:#a08060}
 
-  .btn-outline {
-    background: transparent;
-    color: #D4A843;
-    padding: 14px 32px;
-    border: 1.5px solid #D4A843;
-    border-radius: 4px;
-    font-size: 15px;
-    font-weight: 700;
-    letter-spacing: 1px;
-    cursor: pointer;
-    text-decoration: none;
-    transition: all 0.2s;
-  }
-  .btn-outline:hover { background: rgba(212,168,67,0.1); }
+#contacto{text-align:center;border-top:1px solid rgba(139,105,20,0.2)}
+.contact-cards{display:flex;gap:1.5rem;justify-content:center;flex-wrap:wrap;margin-top:2rem}
+.contact-card{background:rgba(255,255,255,0.04);border:1px solid rgba(139,105,20,0.3);border-radius:8px;padding:1.5rem 2rem;text-decoration:none;color:#f0e6d3;transition:border-color 0.2s,background 0.2s;min-width:200px}
+.contact-card:hover{border-color:#D4A843;background:rgba(212,168,67,0.06)}
+.contact-card .icon{font-size:1.5rem;margin-bottom:0.5rem}
+.contact-card .label{font-size:11px;letter-spacing:2px;color:#8B6914;text-transform:uppercase;margin-bottom:0.25rem}
+.contact-card .value{font-size:0.95rem;color:#c4a882}
 
-  .divider {
-    width: 80px;
-    height: 2px;
-    background: #8B6914;
-    margin: 0 auto 2rem;
-  }
-
-  /* SECCIONES */
-  section {
-    padding: 5rem 2rem;
-    max-width: 1100px;
-    margin: 0 auto;
-  }
-
-  .section-title {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(1.8rem, 4vw, 2.8rem);
-    color: #D4A843;
-    text-align: center;
-    margin-bottom: 0.75rem;
-  }
-
-  .section-sub {
-    text-align: center;
-    color: #c4a882;
-    font-size: 1rem;
-    margin-bottom: 3rem;
-  }
-
-  /* FEATURES */
-  .features-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 1.5rem;
-  }
-
-  .feature-card {
-    background: rgba(255,255,255,0.04);
-    border: 1px solid rgba(139,105,20,0.3);
-    border-radius: 8px;
-    padding: 1.75rem 1.5rem;
-    transition: border-color 0.2s, background 0.2s;
-  }
-  .feature-card:hover {
-    border-color: #D4A843;
-    background: rgba(212,168,67,0.06);
-  }
-
-  .feature-icon {
-    font-size: 2rem;
-    margin-bottom: 1rem;
-  }
-
-  .feature-card h3 {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.1rem;
-    color: #D4A843;
-    margin-bottom: 0.5rem;
-  }
-
-  .feature-card p {
-    font-size: 0.9rem;
-    color: #a08060;
-    line-height: 1.7;
-  }
-
-  /* VIDEO */
-  .video-section {
-    background: rgba(255,255,255,0.02);
-    border-top: 1px solid rgba(139,105,20,0.2);
-    border-bottom: 1px solid rgba(139,105,20,0.2);
-    padding: 5rem 2rem;
-  }
-
-  .video-wrapper {
-    max-width: 800px;
-    margin: 0 auto;
-    aspect-ratio: 16/9;
-    background: rgba(0,0,0,0.4);
-    border: 1px solid rgba(139,105,20,0.4);
-    border-radius: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-  }
-
-  .video-placeholder {
-    text-align: center;
-    color: #8B6914;
-  }
-
-  .video-placeholder .play-btn {
-    width: 70px;
-    height: 70px;
-    border: 2px solid #D4A843;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0 auto 1rem;
-    cursor: pointer;
-    transition: background 0.2s;
-  }
-  .video-placeholder .play-btn:hover { background: rgba(212,168,67,0.15); }
-
-  .play-triangle {
-    width: 0;
-    height: 0;
-    border-top: 12px solid transparent;
-    border-bottom: 12px solid transparent;
-    border-left: 20px solid #D4A843;
-    margin-left: 4px;
-  }
-
-  .video-placeholder p {
-    color: #a08060;
-    font-size: 0.9rem;
-  }
-
-  /* SCREENSHOTS */
-  .screenshots-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 1.5rem;
-  }
-
-  .screenshot-card {
-    border: 1px solid rgba(139,105,20,0.3);
-    border-radius: 8px;
-    overflow: hidden;
-    transition: border-color 0.2s;
-  }
-  .screenshot-card:hover { border-color: #D4A843; }
-
-  .screenshot-img {
-    width: 100%;
-    aspect-ratio: 16/9;
-    object-fit: cover;
-    display: block;
-  }
-
-  .screenshot-label {
-    padding: 0.75rem 1rem;
-    font-size: 0.85rem;
-    color: #a08060;
-    border-top: 1px solid rgba(139,105,20,0.2);
-  }
-
-  /* KEYS */
-  .keys-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 1rem;
-  }
-
-  .key-row {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    padding: 0.75rem 1rem;
-    background: rgba(255,255,255,0.03);
-    border: 1px solid rgba(139,105,20,0.2);
-    border-radius: 6px;
-  }
-
-  .key {
-    background: #2c1a0e;
-    border: 1px solid #8B6914;
-    border-radius: 4px;
-    padding: 4px 10px;
-    font-size: 12px;
-    font-weight: 700;
-    color: #D4A843;
-    min-width: 40px;
-    text-align: center;
-    white-space: nowrap;
-  }
-
-  .key-desc {
-    font-size: 0.85rem;
-    color: #a08060;
-  }
-
-  /* CONTACT */
-  .contact-section {
-    text-align: center;
-    border-top: 1px solid rgba(139,105,20,0.2);
-  }
-
-  .contact-cards {
-    display: flex;
-    gap: 1.5rem;
-    justify-content: center;
-    flex-wrap: wrap;
-    margin-top: 2rem;
-  }
-
-  .contact-card {
-    background: rgba(255,255,255,0.04);
-    border: 1px solid rgba(139,105,20,0.3);
-    border-radius: 8px;
-    padding: 1.5rem 2rem;
-    text-decoration: none;
-    color: #f0e6d3;
-    transition: border-color 0.2s, background 0.2s;
-    min-width: 200px;
-  }
-  .contact-card:hover {
-    border-color: #D4A843;
-    background: rgba(212,168,67,0.06);
-  }
-
-  .contact-card .icon { font-size: 1.5rem; margin-bottom: 0.5rem; }
-  .contact-card .label { font-size: 11px; letter-spacing: 2px; color: #8B6914; text-transform: uppercase; margin-bottom: 0.25rem; }
-  .contact-card .value { font-size: 0.95rem; color: #c4a882; }
-
-  /* FOOTER */
-  footer {
-    text-align: center;
-    padding: 2rem;
-    border-top: 1px solid rgba(139,105,20,0.2);
-    color: #5a4020;
-    font-size: 0.85rem;
-  }
-
-  footer span { color: #8B6914; }
+footer{text-align:center;padding:2rem;border-top:1px solid rgba(139,105,20,0.2);color:#5a4020;font-size:0.85rem}
+footer span{color:#8B6914}
 </style>
 </head>
 <body>
 
-<!-- HERO -->
-<div class="hero">
+<nav>
+  <div class="logo">LineDance App</div>
+  <div class="nav-links">
+    <a href="#features">Características</a>
+    <a href="#capturas">Capturas</a>
+    <a href="#teclas">Teclas</a>
+    <a href="#contacto">Contacto</a>
+  </div>
+</nav>
+
+<div id="hero">
   <div class="badge">Software para Line Dance</div>
   <h1>LineDance App</h1>
-  <p>Reproducidor de música profesional diseñado especialmente para clases y eventos de Line Dance. Mostrá los temas en pantalla, controlá la música y sorprendé a tu audiencia.</p>
+  <p>Reproductor de música profesional diseñado especialmente para clases y eventos de Line Dance. Mostrá los temas en pantalla, controlá la música y sorprendé a tu audiencia.</p>
   <div class="hero-btns">
-    <button class="btn-primary" onclick="document.getElementById('contacto').scrollIntoView({behavior:'smooth'})">Contactar</button>
-    <button class="btn-outline" onclick="document.getElementById('features').scrollIntoView({behavior:'smooth'})">Ver características</button>
+    <a href="#contacto" class="btn-primary">Contactar</a>
+    <a href="#features" class="btn-outline">Ver características</a>
   </div>
 </div>
 
-<!-- CARACTERÍSTICAS -->
-<section id="features">
-  <p class="section-title">¿Qué hace LineDance App?</p>
-  <p class="section-sub">Todo lo que necesitás para tus clases y eventos</p>
-  <div class="divider"></div>
-  <div class="features-grid">
-    <div class="feature-card">
-      <div class="feature-icon">🎵</div>
-      <h3>Reproducción de música</h3>
-      <p>Reproducí tus MP3 en orden, con fade in suave al inicio de cada tema y auto-avance automático.</p>
-    </div>
-    <div class="feature-card">
-      <div class="feature-icon">🖥️</div>
-      <h3>Pantalla en vivo</h3>
-      <p>Mostrá el tema actual, los anteriores y los próximos en pantalla completa. Ideal para proyectores y TV.</p>
-    </div>
-    <div class="feature-card">
-      <div class="feature-icon">⚙️</div>
-      <h3>Totalmente configurable</h3>
-      <p>Personalizá el fondo, logo, fuentes, colores y tamaños desde una interfaz visual intuitiva.</p>
-    </div>
-    <div class="feature-card">
-      <div class="feature-icon">📺</div>
-      <h3>Doble monitor</h3>
-      <p>La pantalla de reproducción queda siempre en primer plano, incluso al trabajar en otro monitor.</p>
-    </div>
-    <div class="feature-card">
-      <div class="feature-icon">🔢</div>
-      <h3>Búsqueda rápida</h3>
-      <p>Escribí 3 dígitos para ir directo al tema que necesitás sin interrumpir el flujo de la clase.</p>
-    </div>
-    <div class="feature-card">
-      <div class="feature-icon">💾</div>
-      <h3>Retoma donde estaba</h3>
-      <p>Al cerrar y abrir el programa, retoma el tema exactamente desde el segundo donde estaba.</p>
+<div id="features">
+  <div class="section">
+    <p class="section-title">¿Qué hace LineDance App?</p>
+    <p class="section-sub">Todo lo que necesitás para tus clases y eventos</p>
+    <div class="divider"></div>
+    <div class="features-grid">
+      <div class="feature-card"><div class="feature-icon">🎵</div><h3>Reproducción de música</h3><p>Reproducí tus MP3 en orden, con fade in suave al inicio de cada tema y auto-avance automático.</p></div>
+      <div class="feature-card"><div class="feature-icon">🖥️</div><h3>Pantalla en vivo</h3><p>Mostrá el tema actual, los anteriores y los próximos en pantalla completa. Ideal para proyectores y TV.</p></div>
+      <div class="feature-card"><div class="feature-icon">⚙️</div><h3>Totalmente configurable</h3><p>Personalizá el fondo, logo, fuentes, colores y tamaños desde una interfaz visual intuitiva.</p></div>
+      <div class="feature-card"><div class="feature-icon">📺</div><h3>Doble monitor</h3><p>La pantalla de reproducción queda siempre en primer plano, incluso al trabajar en otro monitor.</p></div>
+      <div class="feature-card"><div class="feature-icon">🔢</div><h3>Búsqueda rápida</h3><p>Escribí 3 dígitos para ir directo al tema que necesitás sin interrumpir el flujo de la clase.</p></div>
+      <div class="feature-card"><div class="feature-icon">💾</div><h3>Retoma donde estaba</h3><p>Al cerrar y abrir el programa, retoma el tema exactamente desde el segundo donde estaba.</p></div>
     </div>
   </div>
-</section>
+</div>
 
-<!-- VIDEO -->
 <div class="video-section">
-  <div style="max-width:1100px; margin:0 auto;">
+  <div style="max-width:1100px;margin:0 auto">
     <p class="section-title">Demo en vivo</p>
     <p class="section-sub">Mirá cómo funciona en un evento real</p>
     <div class="divider"></div>
     <div class="video-wrapper">
-      <!-- Reemplazá esto con un <iframe> de YouTube cuando tengas el video -->
       <div class="video-placeholder">
         <div class="play-btn"><div class="play-triangle"></div></div>
         <p>Video de demostración</p>
-        <p style="margin-top:0.5rem; font-size:0.8rem;">(reemplazá este bloque con un iframe de YouTube)</p>
+        <p style="margin-top:0.5rem;font-size:0.8rem">(reemplazá con iframe de YouTube)</p>
       </div>
     </div>
   </div>
 </div>
 
-<!-- CAPTURAS -->
-<section>
-  <p class="section-title">Capturas de pantalla</p>
-  <p class="section-sub">La interfaz en acción</p>
-  <div class="divider"></div>
-  <div class="screenshots-grid">
-    <div class="screenshot-card">
-      <img class="screenshot-img" src="captura_1.png" alt="Pantalla de reproducción en vivo">
-      <div class="screenshot-label">Pantalla de reproducción en vivo</div>
-    </div>
-    <div class="screenshot-card">
-      <img class="screenshot-img" src="captura_2.png" alt="Panel de configuración">
-      <div class="screenshot-label">Panel de configuración</div>
-    </div>
-    <div class="screenshot-card">
-      <img class="screenshot-img" src="captura_3.png" alt="Vista previa de diseño">
-      <div class="screenshot-label">Vista previa de diseño</div>
+<div id="capturas">
+  <div class="section">
+    <p class="section-title">Capturas de pantalla</p>
+    <p class="section-sub">La interfaz en acción</p>
+    <div class="divider"></div>
+    <div class="screenshots-grid">
+      <div class="screenshot-card"><img src="captura_1.png" alt="Pantalla de reproducción"><div class="screenshot-label">Pantalla de reproducción en vivo</div></div>
+      <div class="screenshot-card"><img src="captura_2.png" alt="Panel de configuración"><div class="screenshot-label">Panel de configuración</div></div>
+      <div class="screenshot-card"><img src="captura_3.png" alt="Vista previa"><div class="screenshot-label">Vista previa de diseño</div></div>
     </div>
   </div>
-</section>
+</div>
 
-<!-- TECLAS -->
-<section style="border-top: 1px solid rgba(139,105,20,0.2);">
-  <p class="section-title">Control del teclado</p>
-  <p class="section-sub">Todo desde el teclado, sin tocar el mouse</p>
-  <div class="divider"></div>
-  <div class="keys-grid">
-    <div class="key-row"><span class="key">→ / ←</span><span class="key-desc">Siguiente / anterior tema</span></div>
-    <div class="key-row"><span class="key">ESPACIO</span><span class="key-desc">Pausar / reanudar</span></div>
-    <div class="key-row"><span class="key">↑ / ↓</span><span class="key-desc">Subir / bajar volumen</span></div>
-    <div class="key-row"><span class="key">I</span><span class="key-desc">Reiniciar tema actual</span></div>
-    <div class="key-row"><span class="key">R</span><span class="key-desc">Volver al primer tema</span></div>
-    <div class="key-row"><span class="key">0-9</span><span class="key-desc">Ir directo a un tema (3 dígitos)</span></div>
-    <div class="key-row"><span class="key">ESC</span><span class="key-desc">Cerrar y guardar estado</span></div>
+<div id="teclas" style="border-top:1px solid rgba(139,105,20,0.2)">
+  <div class="section">
+    <p class="section-title">Control del teclado</p>
+    <p class="section-sub">Todo desde el teclado, sin tocar el mouse</p>
+    <div class="divider"></div>
+    <div class="keys-grid">
+      <div class="key-row"><span class="key">→ / ←</span><span class="key-desc">Siguiente / anterior tema</span></div>
+      <div class="key-row"><span class="key">ESPACIO</span><span class="key-desc">Pausar / reanudar</span></div>
+      <div class="key-row"><span class="key">↑ / ↓</span><span class="key-desc">Subir / bajar volumen</span></div>
+      <div class="key-row"><span class="key">I</span><span class="key-desc">Reiniciar tema actual</span></div>
+      <div class="key-row"><span class="key">R</span><span class="key-desc">Volver al primer tema</span></div>
+      <div class="key-row"><span class="key">0-9</span><span class="key-desc">Ir directo a un tema (3 dígitos)</span></div>
+      <div class="key-row"><span class="key">ESC</span><span class="key-desc">Cerrar y guardar estado</span></div>
+    </div>
   </div>
-</section>
+</div>
 
-<!-- CONTACTO -->
-<section id="contacto" class="contact-section">
-  <p class="section-title">Contacto</p>
-  <p class="section-sub">¿Querés el programa para tu clase o evento? Escribime.</p>
-  <div class="divider"></div>
-  <div class="contact-cards">
-    <a href="mailto:adrianbruno@gmail.com" class="contact-card">
-      <div class="icon">✉️</div>
-      <div class="label">Email</div>
-      <div class="value">adrianbruno@gmail.com</div>
-    </a>
-    <a href="https://instagram.com/adrianbruno_lp" target="_blank" class="contact-card">
-      <div class="icon">📸</div>
-      <div class="label">Instagram</div>
-      <div class="value">@adrianbruno_lp</div>
-    </a>
+<div id="contacto">
+  <div class="section">
+    <p class="section-title">Contacto</p>
+    <p class="section-sub">¿Querés el programa para tu clase o evento? Escribime.</p>
+    <div class="divider"></div>
+    <div class="contact-cards">
+      <a href="mailto:adrianbruno@gmail.com" class="contact-card">
+        <div class="icon">✉️</div>
+        <div class="label">Email</div>
+        <div class="value">adrianbruno@gmail.com</div>
+      </a>
+      <a href="https://instagram.com/adrianbruno_lp" target="_blank" class="contact-card">
+        <div class="icon">📸</div>
+        <div class="label">Instagram</div>
+        <div class="value">@adrianbruno_lp</div>
+      </a>
+    </div>
   </div>
-</section>
+</div>
 
-<!-- FOOTER -->
 <footer>
   <p>LineDance App &nbsp;|&nbsp; Desarrollado por <span>@adrianbruno_lp</span> &nbsp;|&nbsp; v2.54</p>
 </footer>
