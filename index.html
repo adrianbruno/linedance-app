@@ -246,13 +246,8 @@
   .screenshot-img {
     width: 100%;
     aspect-ratio: 16/9;
-    background: rgba(0,0,0,0.3);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #8B6914;
-    font-size: 0.85rem;
-    letter-spacing: 1px;
+    object-fit: cover;
+    display: block;
   }
 
   .screenshot-label {
@@ -418,15 +413,15 @@
   <div class="divider"></div>
   <div class="screenshots-grid">
     <div class="screenshot-card">
-      <div class="screenshot-img">[ captura 1 ]</div>
+      <img class="screenshot-img" src="captura_1.png" alt="Pantalla de reproducción en vivo">
       <div class="screenshot-label">Pantalla de reproducción en vivo</div>
     </div>
     <div class="screenshot-card">
-      <div class="screenshot-img">[ captura 2 ]</div>
+      <img class="screenshot-img" src="captura_2.png" alt="Panel de configuración">
       <div class="screenshot-label">Panel de configuración</div>
     </div>
     <div class="screenshot-card">
-      <div class="screenshot-img">[ captura 3 ]</div>
+      <img class="screenshot-img" src="captura_3.png" alt="Vista previa de diseño">
       <div class="screenshot-label">Vista previa de diseño</div>
     </div>
   </div>
