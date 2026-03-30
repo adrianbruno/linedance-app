@@ -67,6 +67,13 @@ nav .nav-links a:hover{color:#D4A843}
 
 footer{text-align:center;padding:2rem;border-top:1px solid rgba(139,105,20,0.2);color:#5a4020;font-size:0.85rem}
 footer span{color:#8B6914}
+
+.lightbox{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.92);z-index:999;align-items:center;justify-content:center;cursor:pointer}
+.lightbox.active{display:flex}
+.lightbox img{max-width:90vw;max-height:90vh;border:1px solid #8B6914;border-radius:8px;object-fit:contain}
+.lightbox-close{position:fixed;top:20px;right:28px;color:#D4A843;font-size:2.5rem;cursor:pointer;line-height:1}
+.screenshot-card img{cursor:pointer;transition:opacity 0.2s}
+.screenshot-card img:hover{opacity:0.8}
 </style>
 </head>
 <body>
@@ -128,9 +135,9 @@ footer span{color:#8B6914}
     <p class="section-sub">La interfaz en acción</p>
     <div class="divider"></div>
     <div class="screenshots-grid">
-      <div class="screenshot-card"><img src="captura_1.png" alt="Pantalla de reproducción"><div class="screenshot-label">Pantalla de reproducción en vivo</div></div>
-      <div class="screenshot-card"><img src="captura_2.png" alt="Panel de configuración"><div class="screenshot-label">Panel de configuración</div></div>
-      <div class="screenshot-card"><img src="captura_3.png" alt="Vista previa"><div class="screenshot-label">Vista previa de diseño</div></div>
+      <div class="screenshot-card"><img src="captura_1.png" alt="Pantalla de reproducción" onclick="openLightbox('captura_1.png')"><div class="screenshot-label">Pantalla de reproducción en vivo</div></div>
+      <div class="screenshot-card"><img src="captura_2.png" alt="Panel de configuración" onclick="openLightbox('captura_2.png')"><div class="screenshot-label">Panel de configuración</div></div>
+      <div class="screenshot-card"><img src="captura_3.png" alt="Vista previa" onclick="openLightbox('captura_3.png')"><div class="screenshot-label">Vista previa de diseño</div></div>
     </div>
   </div>
 </div>
@@ -175,6 +182,27 @@ footer span{color:#8B6914}
 <footer>
   <p>LineDance App &nbsp;|&nbsp; Desarrollado por <span>@adrianbruno_lp</span> &nbsp;|&nbsp; v2.54</p>
 </footer>
+
+<div class="lightbox" id="lightbox">
+  <span class="lightbox-close" onclick="closeLightbox()">✕</span>
+  <img id="lightbox-img" src="" alt="">
+</div>
+
+<script>
+function openLightbox(src) {
+  document.getElementById('lightbox-img').src = src;
+  document.getElementById('lightbox').classList.add('active');
+}
+function closeLightbox() {
+  document.getElementById('lightbox').classList.remove('active');
+}
+document.getElementById('lightbox').addEventListener('click', function(e) {
+  if (e.target === this) closeLightbox();
+});
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') closeLightbox();
+});
+</script>
 
 </body>
 </html>
